@@ -16,6 +16,9 @@ export default defineConfig({
   solidPlugin(),
   WindiCSS()],
   build: {
+    commonjsOptions: {
+      transformMixedEsModules: true
+    },
     target: 'esnext',
     polyfillDynamicImport: false,
   },
