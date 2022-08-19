@@ -9,13 +9,14 @@ export default function Home() {
   const [useURL, setURL] = createSignal("");
   const ffmpeg = createFFmpeg({
     log: false,
-    corePath: "https://solid-ffmpeg.pages.dev/ffmpeg-core.js"
+    corePath: "https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js"
   });
 
   createEffect(async()=>{
     // console.log(new URL("ffmpeg-core.js", new URL(import.meta.url).origin).href)
     await ffmpeg.load();
-    setLoaded(false);
+    // console.log(ffmpeg);
+    // setLoaded(false);
   })
 
   const clearAll = () => {
