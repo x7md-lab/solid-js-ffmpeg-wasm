@@ -16,6 +16,11 @@ const App = () => {
             </Link>
           </li>
           <li class="py-2 px-4">
+            <Link href="/singlethread" class="no-underline hover:underline">
+            Single thread
+            </Link>
+          </li>
+          <li class="py-2 px-4">
             <Link href="/about" class="no-underline hover:underline">
               About
             </Link>
