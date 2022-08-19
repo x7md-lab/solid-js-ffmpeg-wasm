@@ -2,14 +2,15 @@ import { createSignal, Show } from 'solid-js';
 import { createEffect } from 'solid-js';
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
-export default function Home() {
+export default function SingleThread() {
   const [isLoaded, setLoaded] = createSignal(true);
   const [isDone, setDone] = createSignal(false);
   const [useProgress, setProgress] = createSignal(0);
   const [useURL, setURL] = createSignal("");
   const ffmpeg = createFFmpeg({
     log: true,
-    corePath: "https://solid-ffmpeg.pages.dev/ffmpeg-core.js"
+    mainName: 'main',
+    corePath: "https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js"
   });
 
   createEffect(async()=>{
@@ -38,6 +39,7 @@ export default function Home() {
   }
   return (
     <section class="bg-gray-100 text-gray-700 p-8">
+      <p>progress don't work on single thread version, main thread (UI) is busy</p>
       <input onChange={(e)=> transcode(e)} type="file" disabled={isLoaded()} />
       <h2>Output:</h2>
       <progress id="loading" max="100" value={useProgress() * 100}></progress>
