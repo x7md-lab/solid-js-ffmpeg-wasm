@@ -29,10 +29,10 @@ export default function Home() {
     const { name } = files[0];
     ffmpeg.FS('writeFile', name, await fetchFile(files[0]));
     ffmpeg.setProgress(({ratio}) => setProgress(ratio));
-    await ffmpeg.run(...['-i', name, '-c:v', 'libmp3lame', 'audio.mp3']);
+    await ffmpeg.run(...['-i', name, '-acodec', 'libmp3lame', 'audio.mp3']);
     const data = ffmpeg.FS('readFile', 'audio.mp3');
     // const video = document.getElementById('player');
-   setURL(URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' })) );
+   setURL(URL.createObjectURL(new Blob([data.buffer], { type: 'audio/mpeg' })) );
    setDone(true);
   }
   return (
